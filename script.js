@@ -10,44 +10,88 @@ setupInput()
 
 function setupInput() {
   window.addEventListener("keydown", handleInput, { once: true })
+  window.addEventListener("touchstart", handleTouchStart, { passive: true });
+  window.addEventListener("touchend", handleTouchEnd, { passive: true });
+}
+
+function handleTouchStart(event) {
+  const touch = event.touches[0];
+  startX = touch.clientX;
+  startY = touch.clientY;
+}
+
+async function handleTouchEnd(event) {
+  const touch = event.changedTouches[0];
+  endX = touch.clientX;
+  endY = touch.clientY;
+
+  const deltaX = endX - startX;
+  const deltaY = endY - startY;
+
+  // Determine swipe direction
+  if (Math.abs(deltaX) > Math.abs(deltaY)) {
+    // Horizontal swipe
+    if (deltaX > 0) {
+      if (!canMoveRight()) return;
+      await moveRight();
+    } else {
+      if (!canMoveLeft()) return;
+      await moveLeft();
+    }
+  } else {
+    // Vertical swipe
+    if (deltaY > 0) {
+      if (!canMoveDown()) return;
+      await moveDown();
+    } else {
+      if (!canMoveUp()) return;
+      await moveUp();
+    }
+  }
+
+  finalizeMove();
 }
 
 async function handleInput(e) {
   switch (e.key) {
     case "ArrowUp":
       if (!canMoveUp()) {
-        setupInput()
-        return
+        setupInput();
+        return;
       }
-      await moveUp()
-      break
+      await moveUp();
+      break;
     case "ArrowDown":
       if (!canMoveDown()) {
-        setupInput()
-        return
+        setupInput();
+        return;
       }
-      await moveDown()
-      break
+      await moveDown();
+      break;
     case "ArrowLeft":
       if (!canMoveLeft()) {
-        setupInput()
-        return
+        setupInput();
+        return;
       }
-      await moveLeft()
-      break
+      await moveLeft();
+      break;
     case "ArrowRight":
       if (!canMoveRight()) {
-        setupInput()
-        return
+        setupInput();
+        return;
       }
-      await moveRight()
-      break
+      await moveRight();
+      break;
     default:
-      setupInput()
-      return
+      setupInput();
+      return;
   }
 
-  grid.cells.forEach(cell => cell.mergeTiles())
+  finalizeMove();
+}
+  function finalizeMove(){
+    grid.cells.forEach(cell => cell.mergeTiles())
+  
 
   const newTile = new Tile(gameBoard)
   grid.randomEmptyCell().tile = newTile
