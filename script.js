@@ -8,6 +8,11 @@ grid.randomEmptyCell().tile = new Tile(gameBoard)
 grid.randomEmptyCell().tile = new Tile(gameBoard)
 setupInput()
 
+const resetButton = document.getElementById("reset-button");
+resetButton.addEventListener("click", () => {
+  window.location.reload(); // Refreshes the page
+});
+
 function setupInput() {
   window.addEventListener("keydown", handleInput, { once: true })
   window.addEventListener("touchstart", handleTouchStart, { passive: true });

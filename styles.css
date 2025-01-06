@@ -13,6 +13,35 @@
     font-size: 7.5vmin;
   }
   
+  .controls{
+    display:flex;
+    flex-direction: column;
+    font-weight: bold;
+    color: #CCC;
+
+    .dir{
+      margin: auto;
+      color: #CCC;
+      
+    }
+
+    #reset-button{
+      width: 5em;
+      height: 2em;
+      border-radius: .5em;
+      background: hsl(240, 85%, 64%);
+      color: #CCC;
+      font-size: 6vmin;
+      font-weight: bold;
+      border: none;
+      margin: auto;
+      margin-top: .5em;
+
+      &:hover{
+        background-color: hsl(240, 89%, 58%);
+      }
+    }
+  }
   #game-board {
     display: grid;
     grid-template-columns: repeat(var(--grid-size), var(--cell-size));
@@ -22,6 +51,7 @@
     border-radius: 1vmin;
     padding: var(--cell-gap);
     position: relative;
+    margin: .5em;
   }
   
   .cell {
