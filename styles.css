@@ -16,13 +16,14 @@
   .controls{
     display:flex;
     flex-direction: column;
+    justify-items: center;
+    align-items: center;
     font-weight: bold;
     color: #CCC;
 
     .dir{
-      margin: auto;
+      margin-left: 1em;
       color: #CCC;
-      
     }
 
     #reset-button{
