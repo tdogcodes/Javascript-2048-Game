@@ -15,6 +15,11 @@ resetButton.addEventListener("click", () => {
   window.location.reload(); // Refreshes the page
 });
 
+const homeButton = document.querySelector(".home-button");
+homeButton.addEventListener("click", () => {
+  window.location.href = "https://2048-landing-page.vercel.app"; // Open the home page
+});
+
 function setupInput() {
   window.addEventListener("keydown", handleInput, { once: true })
 }
