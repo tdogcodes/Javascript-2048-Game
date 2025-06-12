@@ -3,6 +3,8 @@ import Tile from "./tile.js"
 
 const gameBoard = document.getElementById("game-board")
 
+const scoreElement = document.getElementById("score")
+
 const grid = new Grid(gameBoard)
 grid.randomEmptyCell().tile = new Tile(gameBoard)
 grid.randomEmptyCell().tile = new Tile(gameBoard)
@@ -15,46 +17,6 @@ resetButton.addEventListener("click", () => {
 
 function setupInput() {
   window.addEventListener("keydown", handleInput, { once: true })
-  window.addEventListener("touchstart", handleTouchStart, { passive: true });
-  window.addEventListener("touchend", handleTouchEnd, { passive: true });
-}
-
-function handleTouchStart(event) {
-  const touch = event.touches[0];
-  startX = touch.clientX;
-  startY = touch.clientY;
-}
-
-async function handleTouchEnd(event) {
-  const touch = event.changedTouches[0];
-  endX = touch.clientX;
-  endY = touch.clientY;
-
-  const deltaX = endX - startX;
-  const deltaY = endY - startY;
-
-  // Determine swipe direction
-  if (Math.abs(deltaX) > Math.abs(deltaY)) {
-    // Horizontal swipe
-    if (deltaX > 0) {
-      if (!canMoveRight()) return;
-      await moveRight();
-    } else {
-      if (!canMoveLeft()) return;
-      await moveLeft();
-    }
-  } else {
-    // Vertical swipe
-    if (deltaY > 0) {
-      if (!canMoveDown()) return;
-      await moveDown();
-    } else {
-      if (!canMoveUp()) return;
-      await moveUp();
-    }
-  }
-
-  finalizeMove();
 }
 
 async function handleInput(e) {
@@ -96,7 +58,7 @@ async function handleInput(e) {
 }
   function finalizeMove(){
     grid.cells.forEach(cell => cell.mergeTiles())
-  
+    
 
   const newTile = new Tile(gameBoard)
   grid.randomEmptyCell().tile = newTile

@@ -12,6 +12,42 @@
     margin: 0;
     font-size: 7.5vmin;
   }
+
+  @media screen and (max-width: 800px) {
+    body {
+      flex-direction: column;
+    }
+    .controls {
+      position: fixed;
+      bottom: 1em;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      text-align: center;
+    }
+
+    #game-board {
+      bottom: 30px;
+      left: 1px;
+    }
+  }
+
+  .score {
+    display: flex;
+    position: absolute;
+    gap: 10px;
+    top: 1em;
+    left: 1em;
+    padding: 15px 20px;
+    border-radius: .5em;
+    background: hsl(240, 85%, 64%);
+    color: #ffffff;
+    font-size: 5vmin;
+    font-weight: bold;
+    border: none;
+    transition: all 200ms ease-in-out;
+
+  }
   
   .controls{
     display:flex;
@@ -19,30 +55,33 @@
     justify-items: center;
     align-items: center;
     font-weight: bold;
-    color: #CCC;
+    margin: auto;
 
     .dir{
-      margin-left: 1em;
-      color: #CCC;
+      margin: auto;
+      color: #ffffff;
+      font-size: 6vmin;
+      width: 100%;;
     }
 
     #reset-button{
-      width: 5em;
-      height: 2em;
+      padding: 15px 20px;
       border-radius: .5em;
       background: hsl(240, 85%, 64%);
-      color: #CCC;
-      font-size: 6vmin;
+      color: #ffffff;
+      font-size: 5vmin;
       font-weight: bold;
       border: none;
       margin: auto;
       margin-top: .5em;
+      transition: background-color 200ms ease-in-out;
 
       &:hover{
         background-color: hsl(240, 89%, 58%);
       }
     }
   }
+
   #game-board {
     display: grid;
     grid-template-columns: repeat(var(--grid-size), var(--cell-size));
@@ -52,7 +91,7 @@
     border-radius: 1vmin;
     padding: var(--cell-gap);
     position: relative;
-    margin: .5em;
+    margin: 0 auto;
   }
   
   .cell {
