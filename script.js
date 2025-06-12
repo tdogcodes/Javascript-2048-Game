@@ -10,7 +10,7 @@ grid.randomEmptyCell().tile = new Tile(gameBoard)
 grid.randomEmptyCell().tile = new Tile(gameBoard)
 setupInput()
 
-const resetButton = document.getElementById("reset-button");
+const resetButton = document.querySelector(".fancy-button");
 resetButton.addEventListener("click", () => {
   window.location.reload(); // Refreshes the page
 });

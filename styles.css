@@ -4,8 +4,8 @@
   }
 
   :root {
-  --dark: #0f172a;           /* Tailwind's slate-900 */
-  --dark-lighter: #1e293b;   /* Tailwind's slate-800 */
+  --dark: #0f0f23;           /* Tailwind's slate-900 */
+  --dark-lighter: #1a1a3e;   /* Tailwind's slate-800 */
 }
   
   body {
@@ -30,7 +30,7 @@
     background-image:
       linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
       linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
-    background-size: 40px 40px;
+    background-size: 50px 50px;
     opacity: 0.5;
     pointer-events: none; /* so it doesn't block clicks */
     z-index: 0;
@@ -63,7 +63,7 @@
     left: 1em;
     padding: 15px 20px;
     border-radius: .5em;
-    background: hsl(240, 85%, 64%);
+    background: linear-gradient(to right, #4f46e5, #6760ec);
     color: #ffffff;
     font-size: 2rem;
     font-weight: bold;
@@ -84,24 +84,56 @@
       margin: auto;
       color: #ffffff;
       font-size: 6vmin;
-      width: 100%;;
+      width: 100%;
+      margin-bottom: 40px;
     }
 
-    #reset-button{
-      padding: 15px 20px;
-      border-radius: .5em;
-      background: hsl(240, 85%, 64%);
-      color: #ffffff;
-      font-size: 5vmin;
-      font-weight: bold;
+    .fancy-button {
+      position: relative;
+      padding: 1rem 2rem;
       border: none;
-      margin: auto;
-      margin-top: .5em;
-      transition: background-color 200ms ease-in-out;
+      border-radius: 1rem;
+      font-weight: bold;
+      font-size: 2rem;
+      color: white;
+      background: linear-gradient(to right, #4f46e5, #6760ec); /* primary to secondary */
+      overflow: hidden;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      margin: 30px 0;
+      z-index: 999;
+    }
 
-      &:hover{
-        background-color: hsl(240, 89%, 58%);
-      }
+    .fancy-button:active {
+      transform: scale(0.98);
+    }
+
+    .fancy-button:hover {
+      transform: scale(1.05) translateY(-2px);
+    }
+
+    /* Hover background overlay */
+    .fancy-button-bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, #6760ec , #4f46e5); /* reversed */
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 0;
+    }
+
+    .fancy-button:hover .fancy-button-bg {
+      opacity: 1;
+    }
+
+    /* Content stays above overlay */
+    .fancy-button-content {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      z-index: 1;
     }
   }
 
@@ -146,3 +178,99 @@
       transform: scale(0);
     }
   }
+
+  /* From Uiverse.io by 20essentials */ 
+.keycap {
+  position: relative;
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
+  background: linear-gradient(180deg, #282828, #202020);
+  box-shadow:
+    inset -8px 0 8px rgba(0, 0, 0, 0.15),
+    inset 0 -8px 8px rgba(0, 0, 0, 0.25),
+    0 0 0 2px rgba(0, 0, 0, 0.75),
+    10px 20px 25px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  transition:
+    transform 0.1s ease-in-out,
+    box-shadow 0.1s ease-in;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+
+  .letter {
+    position: absolute;
+    left: 12px;
+    top: 12px;
+    color: #e9e9e9;
+    font-size: 16px;
+    transition: transform 0.1s ease-in-out;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 4px;
+    bottom: 14px;
+    right: 12px;
+    background: linear-gradient(90deg, #232323, #4a4a4a);
+    border-radius: 10px;
+    box-shadow:
+      -10px -10px 10px rgba(255, 255, 255, 0.25),
+      10px 5px 10px rgba(0, 0, 0, 0.15);
+    border-left: 1px solid #0004;
+    border-bottom: 1px solid #0004;
+    border-top: 1px solid #0009;
+    transition: all 0.1s ease-in-out;
+  }
+
+  &:hover {
+    transform: translateY(2px);
+    box-shadow:
+      inset -4px 0 4px rgba(0, 0, 0, 0.1),
+      inset 0 -4px 4px rgba(0, 0, 0, 0.15),
+      0 0 0 2px rgba(0, 0, 0, 0.5),
+      5px 10px 15px rgba(0, 0, 0, 0.3);
+
+    &::before {
+      top: 5px;
+      left: 5px;
+      bottom: 11px;
+      right: 11px;
+      box-shadow:
+        -5px -5px 5px rgba(255, 255, 255, 0.15),
+        5px 3px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .letter {
+      transform: translateY(1px);
+    }
+  }
+}
+
+.keycap-container {
+  display: flex;
+  flex-direction: column;
+
+  .up-key{
+    width: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+  }
+  .other-keys {
+    margin-top: 8px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+
+}
