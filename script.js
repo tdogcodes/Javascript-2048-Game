@@ -24,6 +24,19 @@ function setupInput() {
   window.addEventListener("keydown", handleInput, { once: true })
 }
 
+document.querySelector("#up").addEventListener("click", async () => {
+  handleInput({ key: "ArrowUp" });
+});
+document.querySelector("#down").addEventListener("click", async () => {
+  handleInput({ key: "ArrowDown" });
+});
+document.querySelector("#left").addEventListener("click", async () => {
+  handleInput({ key: "ArrowLeft" });
+});
+document.querySelector("#right").addEventListener("click", async () => {
+  handleInput({ key: "ArrowRight" });
+});
+
 async function handleInput(e) {
   switch (e.key) {
     case "ArrowUp":

@@ -60,7 +60,7 @@
     position: absolute;
     gap: 10px;
     top: 1em;
-    left: 1em;
+    left: 3.5em;
     padding: 15px 20px;
     border-radius: .5em;
     background: linear-gradient(to right, #4f46e5, #6760ec);
@@ -77,7 +77,7 @@
   position: absolute;
   gap: 10px;
   top: 1em;
-  left: 7.5em;
+  left: 1em;
   padding: 18px 20px;
   border-radius: 0.5em;
   background: linear-gradient(to right, #4f46e5, #6760ec);
@@ -265,7 +265,7 @@
     transition: all 0.1s ease-in-out;
   }
 
-  &:hover {
+  &:active {
     transform: translateY(2px);
     box-shadow:
       inset -4px 0 4px rgba(0, 0, 0, 0.1),
@@ -292,6 +292,7 @@
 .keycap-container {
   display: flex;
   flex-direction: column;
+  margin-bottom: 8px;
 
   .up-key{
     width: 100%;
@@ -300,8 +301,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding-bottom: 10px;
-    margin-bottom: 10px;
   }
   .other-keys {
     margin-top: 8px;
